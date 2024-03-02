@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HealthHub.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240301135559_Init")]
-    partial class Init
+    [Migration("20240301163121_addAppUser")]
+    partial class addAppUser
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
