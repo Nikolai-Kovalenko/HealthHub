@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "FR0BrAhYESbifZ6C92g8PaKRIcihKDql+uj2g02Ye68=",
+  "Hash": "Q+JrpDVlf//ywroGv1/QIeAtdZecp3H71ARvOGnAYEM=",
   "Source": "HealthHub",
   "BasePath": "_content/HealthHub",
   "Mode": "Default",
@@ -1071,6 +1071,23 @@
       "OriginalItemSpec": "F:\\Project\\HealthHub\\HealthHub\\HealthHub\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\HealthHub.bundle.scp.css"
     },
     {
+      "Identity": "F:\\Project\\HealthHub\\HealthHub\\HealthHub\\wwwroot\\css\\Bootswatch_Cyborg.css",
+      "SourceId": "HealthHub",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\Project\\HealthHub\\HealthHub\\HealthHub\\wwwroot\\",
+      "BasePath": "_content/HealthHub",
+      "RelativePath": "css/Bootswatch_Cyborg.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\Bootswatch_Cyborg.css"
+    },
+    {
       "Identity": "F:\\Project\\HealthHub\\HealthHub\\HealthHub\\wwwroot\\css\\site.css",
       "SourceId": "HealthHub",
       "SourceType": "Discovered",
@@ -1103,6 +1120,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "F:\\Project\\HealthHub\\HealthHub\\HealthHub\\wwwroot\\images\\home\\health-hub.jpg",
+      "SourceId": "HealthHub",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\Project\\HealthHub\\HealthHub\\HealthHub\\wwwroot\\",
+      "BasePath": "_content/HealthHub",
+      "RelativePath": "images/home/health-hub.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\home\\health-hub.jpg"
     },
     {
       "Identity": "F:\\Project\\HealthHub\\HealthHub\\HealthHub\\wwwroot\\js\\site.js",

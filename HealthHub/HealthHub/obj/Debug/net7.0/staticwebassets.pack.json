@@ -5,12 +5,20 @@
       "PackagePath": "staticwebassets\\HealthHub.bundle.scp.css"
     },
     {
+      "Id": "F:\\Project\\HealthHub\\HealthHub\\HealthHub\\wwwroot\\css\\Bootswatch_Cyborg.css",
+      "PackagePath": "staticwebassets\\css\\Bootswatch_Cyborg.css"
+    },
+    {
       "Id": "F:\\Project\\HealthHub\\HealthHub\\HealthHub\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
       "Id": "F:\\Project\\HealthHub\\HealthHub\\HealthHub\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "F:\\Project\\HealthHub\\HealthHub\\HealthHub\\wwwroot\\images\\home\\health-hub.jpg",
+      "PackagePath": "staticwebassets\\images\\home\\health-hub.jpg"
     },
     {
       "Id": "F:\\Project\\HealthHub\\HealthHub\\HealthHub\\wwwroot\\js\\site.js",
