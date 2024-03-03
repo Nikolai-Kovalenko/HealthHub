@@ -68,12 +68,14 @@ namespace HealthHub.Data
                 .HasForeignKey(pdr => pdr.DoctorId)
                 .OnDelete(DeleteBehavior.Restrict);
 
+            modelBuilder.Entity<DoctorProfile>().ToTable(nameof(DoctorProfile), "dbo", u => u.IsTemporal());
+
         }
 
         public DbSet<AppUser> AppUsers { get; set; }
 
         public DbSet<Appointment> Appointments { get; set; }
-        public DbSet<Doctor> Doctors { get; set; }  
+        public DbSet<DoctorProfile> DoctorsProfile { get; set; }
         public DbSet<MedCard> MedCards { get; set; }
         public DbSet<PatientDoctorRelation> PatientDoctorRelations { get; set; }
     }

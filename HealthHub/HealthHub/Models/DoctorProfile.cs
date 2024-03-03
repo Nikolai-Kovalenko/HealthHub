@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HealthHub.Models
 {
-    public class Doctor
+    public class DoctorProfile
     {
         [Key]
         public int Id { get; set; }
@@ -15,8 +15,8 @@ namespace HealthHub.Models
 
         public string? Desc { get; set; }
         public string? PathToPhoto { get; set; }
-        public bool IsActive { get; set; } // Активный или заблокированый
         public DateTime? DeleteTime { get; set; }
-        public DateTime RegistrationTime { get; set; }
+        public DateTime CreateTime { get; set; }
+        public DateTime? ChangeTime { get; set; }
     }
 }
