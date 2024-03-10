@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Q+JrpDVlf//ywroGv1/QIeAtdZecp3H71ARvOGnAYEM=",
+  "Hash": "F1HE2FatBsfKJCPxHPHbNFIrFHHvwQI4XpWAabsVeVE=",
   "Source": "HealthHub",
   "BasePath": "_content/HealthHub",
   "Mode": "Default",
@@ -1137,6 +1137,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\home\\health-hub.jpg"
+    },
+    {
+      "Identity": "F:\\Project\\HealthHub\\HealthHub\\HealthHub\\wwwroot\\images\\userPhoto\\983e07a7-fab8-4480-9ab7-8095f1152239.jpg",
+      "SourceId": "HealthHub",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\Project\\HealthHub\\HealthHub\\HealthHub\\wwwroot\\",
+      "BasePath": "_content/HealthHub",
+      "RelativePath": "images/userPhoto/983e07a7-fab8-4480-9ab7-8095f1152239.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\userPhoto\\983e07a7-fab8-4480-9ab7-8095f1152239.jpg"
+    },
+    {
+      "Identity": "F:\\Project\\HealthHub\\HealthHub\\HealthHub\\wwwroot\\images\\userPhoto\\ef1dcb5d-b809-47f5-8fab-0563634f058e.jpg",
+      "SourceId": "HealthHub",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\Project\\HealthHub\\HealthHub\\HealthHub\\wwwroot\\",
+      "BasePath": "_content/HealthHub",
+      "RelativePath": "images/userPhoto/ef1dcb5d-b809-47f5-8fab-0563634f058e.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\userPhoto\\ef1dcb5d-b809-47f5-8fab-0563634f058e.jpg"
     },
     {
       "Identity": "F:\\Project\\HealthHub\\HealthHub\\HealthHub\\wwwroot\\js\\site.js",

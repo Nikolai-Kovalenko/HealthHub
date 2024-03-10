@@ -1,22 +1,23 @@
 ﻿using HealthHub.Data;
 using HealthHub.Models;
-using HealthHub.Models.DTO.ProfileDTO;
+using HealthHub.Models.DTO.UserDTO;
 using HealthHub.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace HealthHub.Repository
 {
-    public class DoctorProfileRepository : Repository<DoctorProfile>, IDoctorProfileRepository
+    public class AppUserRepository<T> : Repository<AppUser>, IAppUserRepository
     {
         private readonly AppDbContext _db;
 
-        public DoctorProfileRepository(AppDbContext db) : base(db)
+        public AppUserRepository(AppDbContext db) : base(db)
         {
             _db = db;
         }
 
-
-        public void Delete(DoctorProfile obj, DateTime dateTime)
+        public void Delete(AppUser obj, DateTime dateTime)
         {
             obj.DeleteTime = dateTime;
         }
@@ -27,6 +28,7 @@ namespace HealthHub.Repository
             {
                 // TODO
                 // Сейчас выбираеться только имя доктора. Нужно подумать о выводе описания и фото доктора
+                // А вообще, на так уж фотка в этом моменте и нужна. Доктора можно и без фотки выбрать :)
                 return _db.DoctorsProfile.Where(i => i.DeleteTime == null).Select(i => new SelectListItem
                 {
                     Text = i.AppUser.UserName,
@@ -37,15 +39,18 @@ namespace HealthHub.Repository
             return null;
         }
 
-
-        public void Update(DoctorProfileDTO obj, DateTime dateTime)
+        public void Update(AppUserDTO obj)
         {
             var objFromDb = base.FirstOrDefault(u => u.Id == obj.Id);
             if (objFromDb != null)
             {
-                objFromDb.Desc = obj.Desc;
-                objFromDb.PathToPhoto = obj.PathToPhoto;
-                objFromDb.ChangeTime = dateTime;
+                objFromDb.Name = obj.Name;
+                objFromDb.Surname = obj.Surname;   
+                objFromDb.Email = obj.Email;
+                objFromDb.UserName = obj.Email;
+                objFromDb.NormalizedUserName = obj.Email.ToUpper();
+                objFromDb.NormalizedEmail = obj.Email.ToUpper();
+                objFromDb.Birthday = obj.Birthday;
             }
         }
     }

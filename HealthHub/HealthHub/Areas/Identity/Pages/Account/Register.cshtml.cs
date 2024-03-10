@@ -145,7 +145,7 @@ namespace HealthHub.Areas.Identity.Pages.Account
                 var user = new AppUser
                 {
                     Email = Input.Email,
-                    NormalizedUserName = Input.Name,
+                    Name = Input.Name,
                     Surname = Input.Surname,
                     Sex = Input.Sex,
                     Birthday = Input.Birthday,

@@ -1,5 +1,6 @@
 using HealthHub;
 using HealthHub.Data;
+using HealthHub.Models;
 using HealthHub.Repository;
 using HealthHub.Repository.IRepository;
 using Microsoft.AspNetCore.Identity;
@@ -20,6 +21,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>()
     .AddDefaultTokenProviders();
 
 builder.Services.AddScoped<IDoctorProfileRepository, DoctorProfileRepository>();
+builder.Services.AddScoped<IAppUserRepository, AppUserRepository<AppUser>>();
 
 builder.Services.AddAutoMapper(typeof(MappingConfig));
 

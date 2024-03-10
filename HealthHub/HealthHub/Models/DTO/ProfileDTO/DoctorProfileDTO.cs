@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HealthHub.Models.DTO.ProfileDTO
 {
@@ -6,12 +7,8 @@ namespace HealthHub.Models.DTO.ProfileDTO
     {
         public int Id { get; set; }
 
-        public string UserId { get; set; }
-
-        [ForeignKey("UserId")]
-        public virtual AppUser AppUser { get; set; }
-
         public string? Desc { get; set; }
+        [Display(Name = "Photo")]
         public string? PathToPhoto { get; set; }
     }
 }
