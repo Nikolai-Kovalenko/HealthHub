@@ -5,10 +5,10 @@
         <div class="col">
             <h1 class="text-primary">Profile</h1>
         </div>
-        @if (Model != null)
+        @if (Model.doctorProfileDTO != null)
         {
             <div class="col text-end pt-1">
-                <a asp-controller="DoctorProfile" asp-action="Upsert" class="btn btn-success"><i class="bi bi-plus-square"></i> Change</a>
+                <a asp-controller="DoctorProfile" asp-action="Upsert" class="btn btn-success"> <i class="bi bi-plus-square"></i> Change</a>
             </div>
         }
         else
@@ -22,52 +22,66 @@
     <br /><br />
 
     @*Вместо тблицы просто вставить шаблон html из upsert (Возможно, так будет только для доктора)*@
-    @if (Model != null)
+    @if (Model.doctorProfileDTO != null)
     {
-        <table class="table table-bordered table-striped" style="width:100%">
-            <tread>
-                <tr>
-                    <th>
-                        Topic Name
-                    </th>
-                    <th>
-                        Sectioc Type
-                    </th>
-                    <th>
-                        Description
-                    </th>
-                    <th>
-                        Create Time
-                    </th>
-                    <th>
-                        Last Change Time
-                    </th>
-                    <th></th>
-                </tr>
-            </tread>
-            <tbody>
-                @*                @foreach (var obj in Model)
-            {
-            <tr>
-            <td wight="15%">@obj.Name</td>
-            <td wight="15%">@obj.Section.Name</td>
-            <td wight="20%">@obj.Description</td>
-            <td wight="20%">@obj.CreateTime</td>
-            <td wight="20%">@obj.LastChangeTime</td>
-            <td class="text-center">
-            <div class="w-55 btn-group" role="group">
-            <a asp-controller="Topic" asp-route-Id="@obj.Id" asp-action="Upsert" class="btn btn-primary mx-2">
-            <i class="bi bi-pencil-square"></i>
-            </a>
-            <a asp-controller="Topic" asp-route-Id="@obj.Id" asp-action="Delete" class="btn btn-danger mx-2">
-            <i class="bi bi-trash3"></i>
-            </a>
+        <div class="row">
+            <div class="col-8" enctype="multipart/form-data">
+                <div class="form-group row py-2">
+                    <div class="col-4">
+                        <label asp-for="@Model.appUserDTO.Name"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="@Model.appUserDTO.Name" class="form-control" disabled/>
+                        <span asp-validation-for="@Model.appUserDTO.Name" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row py-2">
+                    <div class="col-4">
+                        <label asp-for="@Model.appUserDTO.Surname"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="@Model.appUserDTO.Surname" class="form-control" disabled />
+                        <span asp-validation-for="@Model.appUserDTO.Surname" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row py-2">
+                    <div class="col-4">
+                        <label asp-for="@Model.appUserDTO.Email"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="@Model.appUserDTO.Email" class="form-control" disabled />
+                        <span asp-validation-for="@Model.appUserDTO.Email" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row py-2">
+                    <div class="col-4">
+                        <label asp-for="@Model.appUserDTO.Birthday"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="@Model.appUserDTO.Birthday" class="form-control" type="date" disabled />
+                        <span asp-validation-for="@Model.appUserDTO.Birthday" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row py-2">
+                    <div class="col-4">
+                        <label asp-for="@Model.doctorProfileDTO.Desc"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="@Model.doctorProfileDTO.Desc" class="form-control" disabled/>
+                        <span asp-validation-for="@Model.doctorProfileDTO.Desc" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
-            </td>
-            </tr>
-            }*@
-            </tbody>
-        </table>
+            <div class="col-4">
+                @if (Model.doctorProfileDTO != null)
+                {
+                    <img src="@WC.ImagePath@Model.doctorProfileDTO.PathToPhoto" width="100%" style="border-radius:5px; border:1px solid #bbb" />
+                }
+            </div>
+        </div>
     }
     else
     {

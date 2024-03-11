@@ -59,7 +59,7 @@
                 DoctorProfileVM doctorProfileVM = new()
                 {
                     appUserDTO = _mapper.Map<AppUserDTO>(appUser),
-                    doctorProfileDTO = new DoctorProfileDTO()
+                    doctorProfileDTO = _mapper.Map<DoctorProfileDTO>(doctorProfile)
                 };
 
                 return View(doctorProfileVM);  
@@ -72,12 +72,13 @@
                     var claimsIdentity = (ClaimsIdentity)User.Identity;
                     var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
 
+                    var doctorProfile = _doctorProfileRepository.FirstOrDefault(u => u.UserId == claim.Value);
                     AppUser appUser = _appUserRepository.FirstOrDefault(u => u.Id == claim.Value);
 
                     DoctorProfileVM doctorProfileVM = new()
                     {
                         appUserDTO = _mapper.Map<AppUserDTO>(appUser),
-                        doctorProfileDTO = new DoctorProfileDTO()
+                        doctorProfileDTO = _mapper.Map<DoctorProfileDTO>(doctorProfile)
                     };
 
                     return View(doctorProfileVM);
@@ -111,19 +112,9 @@
                     var claimsIdentity = (ClaimsIdentity)User.Identity;
                     var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
 
+                    var objFromDb = _doctorProfileRepository.FirstOrDefault(u => u.UserId == claim.Value);
+
                     var curetnDate = DateTime.Now;
-
-                    var files = HttpContext.Request.Form.Files;
-                    string webRootPath = _webHostEnvironment.WebRootPath;
-
-                    string upload = webRootPath + WC.ImagePath;
-                    string fileName = Guid.NewGuid().ToString();
-                    string extension = Path.GetExtension(files[0].FileName);
-
-                    using (var fileStream = new FileStream(Path.Combine(upload, fileName + extension), FileMode.Create))
-                    {
-                        files[0].CopyTo(fileStream);
-                    }
 
                     // Create
                     if (obj.doctorProfileDTO.Id == 0)
@@ -131,7 +122,21 @@
 
                         DoctorProfile doctorProfile = _mapper.Map<DoctorProfile>(obj.doctorProfileDTO);
                         doctorProfile.CreateTime = curetnDate;
+
+                        var files = HttpContext.Request.Form.Files;
+                        string webRootPath = _webHostEnvironment.WebRootPath;
+
+                        string upload = webRootPath + WC.ImagePath;
+                        string fileName = Guid.NewGuid().ToString();
+                        string extension = Path.GetExtension(files[0].FileName);
+
+                        using (var fileStream = new FileStream(Path.Combine(upload, fileName + extension), FileMode.Create))
+                        {
+                            files[0].CopyTo(fileStream);
+                        }
+
                         doctorProfile.PathToPhoto = fileName + extension;
+
                         doctorProfile.UserId = claim.Value;
 
                         _doctorProfileRepository.Add(doctorProfile);
@@ -146,11 +151,30 @@
                         AppUser appUser = _appUserRepository.FirstOrDefault(u => u.Id == obj.appUserDTO.Id);
 
                         var uniqeEmail = _appUserRepository.FirstOrDefault(u => u.Email == obj.appUserDTO.Email);
-                        if (uniqeEmail == null) 
+                        if (uniqeEmail.Id == appUser.Id) 
                         {
                             if ((doctorProfile != null) && (appUser != null))
                             {
-                                obj.doctorProfileDTO.PathToPhoto = fileName + extension;
+                                if (obj.doctorProfileDTO.PathToPhoto != null)
+                                {
+                                    var files = HttpContext.Request.Form.Files;
+                                    string webRootPath = _webHostEnvironment.WebRootPath;
+
+                                    string upload = webRootPath + WC.ImagePath;
+                                    string fileName = Guid.NewGuid().ToString();
+                                    string extension = Path.GetExtension(files[0].FileName);
+
+                                    using (var fileStream = new FileStream(Path.Combine(upload, fileName + extension), FileMode.Create))
+                                    {
+                                        files[0].CopyTo(fileStream);
+                                    }
+
+                                    obj.doctorProfileDTO.PathToPhoto = fileName + extension;
+                                }
+                                else
+                                {
+                                    obj.doctorProfileDTO.PathToPhoto = objFromDb.PathToPhoto;
+                                }
 
                                 _doctorProfileRepository.Update(obj.doctorProfileDTO, curetnDate);
                                 _appUserRepository.Update(obj.appUserDTO);
