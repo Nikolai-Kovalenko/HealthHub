@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using HealthHub.Models;
+using HealthHub.Models.DTO.MedCardDTO;
 using HealthHub.Models.DTO.ProfileDTO;
 using HealthHub.Models.DTO.UserDTO;
 using static System.Runtime.InteropServices.JavaScript.JSType;
@@ -11,6 +12,7 @@ namespace HealthHub
         public MappingConfig()
         {
             CreateMap<DoctorProfile, DoctorProfileDTO>().ReverseMap();
+            CreateMap<MedCard, MedCardDTO>().ReverseMap();
             CreateMap<AppUser, AppUserDTO>().ReverseMap();
         }
     }

@@ -12,6 +12,7 @@
         public const string Female = "Female";
 
         public const string DoctorList = "DoctorList";
+        public const string CardList = "CardList";
 
     }
 }

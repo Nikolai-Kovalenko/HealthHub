@@ -20,8 +20,9 @@ builder.Services.AddDefaultIdentity<IdentityUser>()
     .AddEntityFrameworkStores<AppDbContext>()
     .AddDefaultTokenProviders();
 
-builder.Services.AddScoped<IDoctorProfileRepository, DoctorProfileRepository>();
 builder.Services.AddScoped<IAppUserRepository, AppUserRepository<AppUser>>();
+builder.Services.AddScoped<IDoctorProfileRepository, DoctorProfileRepository>();
+builder.Services.AddScoped<IMedCardRepository, MedCardRepository>();
 
 builder.Services.AddAutoMapper(typeof(MappingConfig));
 

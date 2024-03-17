@@ -7,11 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace HealthHub.Repository
 {
-    public class DoctorProfileRepository : Repository<DoctorProfile>, IDoctorProfileRepository
+    public class MedCardRepository : Repository<MedCard>, IMedCardRepository
     {
         private readonly AppDbContext _db;
 
-        public DoctorProfileRepository(AppDbContext db) : base(db)
+        public MedCardRepository(AppDbContext db) : base(db)
         {
             _db = db;
         }
@@ -24,10 +24,8 @@ namespace HealthHub.Repository
 
         public IEnumerable<SelectListItem> GetAllDropdownList(string obj)
         {
-            if (obj == WC.DoctorList)
+            if (obj == WC.CardList)
             {
-                // TODO
-                // Сейчас выбираеться только имя доктора. Нужно подумать о выводе описания и фото доктора
                 return _db.DoctorsProfile.Where(i => i.DeleteTime == null).Select(i => new SelectListItem
                 {
                     Text = i.AppUser.UserName,
@@ -39,14 +37,14 @@ namespace HealthHub.Repository
         }
 
 
-        public void Update(DoctorProfileDTO obj, DateTime dateTime)
+        public void Update(MedCardDTO obj, DateTime dateTime)
         {
             var objFromDb = base.FirstOrDefault(u => u.Id == obj.Id);
             if (objFromDb != null)
             {
                 objFromDb.Desc = obj.Desc;
-                objFromDb.PathToPhoto = obj.PathToPhoto;
-                objFromDb.ChangeTime = dateTime;
+                objFromDb.ChangeUserId = obj.ChangeUserId;
+                objFromDb.ChangeDate = dateTime;
             }
         }
     }

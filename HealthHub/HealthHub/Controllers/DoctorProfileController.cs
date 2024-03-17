@@ -24,8 +24,6 @@
             private readonly IDoctorProfileRepository _doctorProfileRepository;
             public readonly IAppUserRepository _appUserRepository;
             private readonly IWebHostEnvironment _webHostEnvironment;
-
-
             public IMapper _mapper { get; set; }
 
             public DoctorProfileController(
@@ -182,7 +180,7 @@
                                 _doctorProfileRepository.Save();
                                 _appUserRepository.Save();
 
-                                //return RedirectToAction(nameof(Index));
+                                return RedirectToAction(nameof(Index));
                             }
                         }
 
