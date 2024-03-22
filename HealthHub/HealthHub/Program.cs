@@ -22,6 +22,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>()
 
 builder.Services.AddScoped<IAppUserRepository, AppUserRepository<AppUser>>();
 builder.Services.AddScoped<IDoctorProfileRepository, DoctorProfileRepository>();
+builder.Services.AddScoped<IPatientDoctorRelationRepository, PatientDoctorRelationRepository>();
 builder.Services.AddScoped<IMedCardRepository, MedCardRepository>();
 
 builder.Services.AddAutoMapper(typeof(MappingConfig));
