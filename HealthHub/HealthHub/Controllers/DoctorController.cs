@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using HealthHub.Data;
 using HealthHub.Models;
+using HealthHub.Models.DTO.PatientDoctorRelationDTO;
 using HealthHub.Models.DTO.ProfileDTO;
 using HealthHub.Models.DTO.UserDTO;
 using HealthHub.Models.ViewModel;
@@ -8,6 +10,7 @@ using HealthHub.Repository.IRepository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Data;
 using System.Security.Claims;
 
@@ -24,6 +27,8 @@ namespace HealthHub.Controllers
         public readonly IAppUserRepository _appUserRepository;
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly IDoctorProfileRepository _doctorProfileRepository;
+        private readonly AppDbContext _db;
+
         public IMapper _mapper { get; set; }
 
 
@@ -35,7 +40,9 @@ namespace HealthHub.Controllers
             IMapper mapper,
             IPatientDoctorRelationRepository patientDoctorRelationRepo,
             IAppUserRepository appUserRepository,
-            IWebHostEnvironment webHostEnvironment)
+            IWebHostEnvironment webHostEnvironment,
+            AppDbContext db
+            )
         {
             _signInManager = signInManager;
             _roleManager = roleManager;
@@ -45,16 +52,13 @@ namespace HealthHub.Controllers
             _appUserRepository = appUserRepository;
             _webHostEnvironment = webHostEnvironment;
             _doctorProfileRepository = doctorProfileRepository;
+            _db = db;
         }
 
         public IActionResult Index()
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
-
-            // тут кося в том, вто мне передаёться не объект, а null, а потом я у этого null ищу параметр.
-            // Нужно бы искать не всеь объект, а сам парамерт. Ну, или сделать проверку на null, и если объект не найден,
-            // то изменить логику нахождения doctorProfile и doctorCommonData
 
             var patientDoctorRelation = _patientDoctorRelationRepo.FirstOrDefault(u => u.UserId == claim.Value);
 
@@ -80,6 +84,78 @@ namespace HealthHub.Controllers
 
             return View(doctorProfileVM);
         }
-        
+
+        public IActionResult Upsert()
+        {
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            var relationFromDb = _patientDoctorRelationRepo.FirstOrDefault(u => u.UserId == claim.Value);
+
+            if (relationFromDb == null) // Choose doctor
+            {
+                ChooseDoctorVM chooseDoctorVM = new()
+                {
+                    patientDoctorRelation = relationFromDb,
+                    doctorProfileList = _doctorProfileRepository.GetAllDropdownList(WC.DoctorList)
+                };
+
+                return View(chooseDoctorVM);
+            }
+
+            // change doctor
+
+            if (relationFromDb != null)
+            {
+
+                ChooseDoctorVM chooseDoctorVM = new()
+                {
+                    patientDoctorRelation = relationFromDb,
+                    doctorProfileList = _doctorProfileRepository.GetAllDropdownList(WC.DoctorList)
+                };
+
+                return View(chooseDoctorVM);
+            }
+
+            return View();
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Upsert(ChooseDoctorVM obj)
+        {
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+
+            var objFromDb = _patientDoctorRelationRepo.FirstOrDefault(u => u.UserId == claim.Value);
+            var doctorProfile = _doctorProfileRepository.FirstOrDefault(u => u.Id == Convert.ToInt32(obj.patientDoctorRelation.DoctorId));
+            
+            if (objFromDb == null) // Choose
+            {
+                PatientDoctorRelation patientDoctorRelation = new()
+                {
+                    UserId = claim.Value,
+                    DoctorId = doctorProfile.UserId
+                };
+
+                _patientDoctorRelationRepo.Add(patientDoctorRelation);
+                _patientDoctorRelationRepo.Save();
+
+                return RedirectToAction(nameof(Index));
+            }
+
+
+            PatientDoctorRelationDTO patientDoctorRelationDTO = new()
+            {
+                Id = obj.patientDoctorRelation.Id,
+                DoctorId = doctorProfile.UserId,
+                UserId = claim.Value
+            };
+            _patientDoctorRelationRepo.Update(patientDoctorRelationDTO);
+            _patientDoctorRelationRepo.Save();
+
+            return RedirectToAction("Index");
+        }
+
     }
 }

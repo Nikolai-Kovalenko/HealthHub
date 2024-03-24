@@ -9,13 +9,13 @@
         @if (Model.doctorProfileDTO != null)
         {
             <div class="col text-end pt-1">
-                <a asp-controller="DoctorProfile" asp-action="Upsert" class="btn btn-success"> <i class="bi bi-plus-square"></i> Change</a>
+                <a asp-controller="Doctor" asp-action="Upsert" class="btn btn-success"> <i class="bi bi-plus-square"></i> Change</a>
             </div>
         }
         else
         {
             <div class="col text-end pt-1">
-                <a asp-controller="DoctorProfile" asp-action="Upsert" class="btn btn-success"><i class="bi bi-plus-square"></i>Choose your doctor</a>
+                <a asp-controller="Doctor" asp-action="Upsert" class="btn btn-success"><i class="bi bi-plus-square"></i>Choose your doctor</a>
             </div>
         }
     </div>

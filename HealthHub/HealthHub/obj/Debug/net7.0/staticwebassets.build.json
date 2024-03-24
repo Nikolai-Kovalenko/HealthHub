@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "F1HE2FatBsfKJCPxHPHbNFIrFHHvwQI4XpWAabsVeVE=",
+  "Hash": "aQyYtOh6JPsej26V5IbW42063I0ECCB8Jd5Vn0TWKXU=",
   "Source": "HealthHub",
   "BasePath": "_content/HealthHub",
   "Mode": "Default",
@@ -1171,6 +1171,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\userPhoto\\ef1dcb5d-b809-47f5-8fab-0563634f058e.jpg"
+    },
+    {
+      "Identity": "F:\\Project\\HealthHub\\HealthHub\\HealthHub\\wwwroot\\images\\userPhoto\\JohnnySins.jpg",
+      "SourceId": "HealthHub",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\Project\\HealthHub\\HealthHub\\HealthHub\\wwwroot\\",
+      "BasePath": "_content/HealthHub",
+      "RelativePath": "images/userPhoto/JohnnySins.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\userPhoto\\JohnnySins.jpg"
     },
     {
       "Identity": "F:\\Project\\HealthHub\\HealthHub\\HealthHub\\wwwroot\\js\\site.js",

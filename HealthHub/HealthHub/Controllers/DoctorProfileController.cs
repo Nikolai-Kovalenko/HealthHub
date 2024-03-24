@@ -114,7 +114,7 @@
 
                     var curetnDate = DateTime.Now;
 
-                    // Create
+                    // Choose
                     if (obj.doctorProfileDTO.Id == 0)
                     {
 
@@ -142,7 +142,7 @@
 
                         //return RedirectToAction(nameof(Index));
                     }
-                    // Update
+                    // Change
                     else
                     {
                         DoctorProfile doctorProfile = _doctorProfileRepository.FirstOrDefault(u => u.Id == obj.doctorProfileDTO.Id);
